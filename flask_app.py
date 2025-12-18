@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 from uuid import uuid4
+from .mongodbClient import database
+
 
 app = Flask(__name__)
 
@@ -25,6 +27,8 @@ def get_todo_or_404(todo_id):
 
 @app.route("/", methods=["GET"])
 def create_data():
+    todoColl=database['todo']
+    todoColl.insert_one({})
     return "My name is Vikas"
 
 
